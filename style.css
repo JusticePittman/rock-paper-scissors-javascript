@@ -1,5 +1,5 @@
 body {
-    background-color: rebeccapurple;
+    background-color: #708090;
     text-align: center;
 
     display: flex;
@@ -8,8 +8,22 @@ body {
     gap: 1rem;
 }
 
+.results {
+    height: 10em;
+    font-size: 2rem;
+}
+
 .btns {
+    display: none;
+}
+
+.grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
+}
+
+button {
+    font-size: 1rem;
+    min-width: 8rem;
 }

@@ -9,7 +9,13 @@ function game(){
     outcome.setAttribute('style', 'white-space: pre;');
 
     const btn = document.createElement('button');
-    const buttons = document.querySelectorAll('button');
+    const buttons = document.querySelector('.btns').childNodes;
+    const btnDiv = document.querySelector('.btns');
+    const start = document.getElementById('start');
+    start.addEventListener('click', () => {
+        btnDiv.classList.toggle('grid');
+        start.style.display = 'none';
+    });
 
     buttons.forEach(button => button.addEventListener('click', () => {
         playerSelection = button.textContent;
@@ -17,8 +23,9 @@ function game(){
         
         playRound(playerSelection, computerSelection);
         if (playerPoints === 5 || computerPoints === 5) {
-            outcome.textContent = '';
-            buttons.forEach(button => button.remove());
+            outcome.style.display = 'none';
+            btnDiv.classList.toggle('grid');
+            btn.setAttribute('style','margin-top: 5em;');
             btn.textContent = 'Reset';
             btn.addEventListener('click', () => {window.location.reload();});
 
@@ -51,33 +58,33 @@ function game(){
             outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
         } else if (playerSelection === "rock"){
             if(computerSelection === "paper"){
+                computerPoints++;
                 outcome.textContent = "You Lose! Paper beats Rock\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                computerPoints++;
             } else if (computerSelection === "scissors"){
+                playerPoints++;
                 outcome.textContent = "You Win! Rock beats Scissors\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                playerPoints++;
             }
         } else if (playerSelection === "paper"){
             if (computerSelection === "scissors"){
+                computerPoints++;
                 outcome.textContent = "You Lose! Scissors beats Paper\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                computerPoints++;
             } else if (computerSelection === "rock"){
+                playerPoints++;
                 outcome.textContent = "You Win! Paper beats Rock\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                playerPoints++;
             }
         } else if (playerSelection === "scissors"){
             if (computerSelection ==="rock"){
+                computerPoints++;
                 outcome.textContent = "You Lose! Rock beats Scissors\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                computerPoints++;
             } else if (computerSelection === "paper"){
+                playerPoints++;
                 outcome.textContent = "You Win! Scissors beats Paper\r\n";
                 outcome.textContent += `Player Score: ${playerPoints}\r\nComputer Score: ${computerPoints}`;
-                playerPoints++;
             }
         }
     }
